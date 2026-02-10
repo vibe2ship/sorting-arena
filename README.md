@@ -1,39 +1,39 @@
 # Sorting Arena
 
-**用 AI 优化 C 语言排序算法，看谁跑得最快。**
+**Optimize a C sorting algorithm with AI. May the fastest implementation win.**
 
 A vibe coding hackathon by [Vibe2Ship](https://github.com/vibe2ship).
 
-## 规则
+## Rules
 
-1. **实现一个函数**：`void participant_sort(int *arr, size_t n)`
-2. **语言**：纯 C（C11），不依赖外部库
-3. **要求**：结果正确，额外内存不超过 O(n)
-4. **AI 随便用**
+1. **Implement one function**: `void participant_sort(int *arr, size_t n)`
+2. **Language**: Pure C (C11), no external dependencies
+3. **Constraints**: Must produce correct output; extra memory usage capped at O(n)
+4. **AI is fair game** — use whatever tools you like
 
-## 快速开始
+## Getting Started
 
 ```bash
 git clone https://github.com/vibe2ship/sorting-arena.git
 cd sorting-arena
 
-# 跑一下 baseline，感受一下
+# Run the baseline to see what you're up against
 make run
 
-# 编辑你的实现
+# Write your implementation
 vim submissions/example/sort.c
 
-# 再跑一次，看你的成绩
+# Run again and check your results
 make run
 ```
 
-## 评测方式
+## Benchmarking
 
-你的实现会和 glibc `qsort` 对比。
+Your implementation is benchmarked against glibc `qsort`.
 
-本地测试：随机数据，`1K` 和 `10K`。最终评测规模更大。
+Local tests use random data at `1K` and `10K` elements. The final evaluation runs at larger scales.
 
-## 输出示例
+## Sample Output
 
 ```
   ┌─────────────────────────────────────────────────────────────┐
@@ -49,38 +49,38 @@ make run
   participant █████████████████████████                      0.36 ms  ◀
 ```
 
-## 提交方式
+## How to Submit
 
-1. Fork 本仓库
-2. 在 `submissions/` 下创建你的目录：`submissions/你的名字/sort.c`
-3. 实现 `participant_sort`
-4. 确保 `make run SUBMISSION=submissions/你的名字/sort.c` 全部 PASS
-5. 提交 PR
+1. Fork this repository
+2. Create your directory under `submissions/`: `submissions/your-name/sort.c`
+3. Implement `participant_sort`
+4. Make sure `make run SUBMISSION=submissions/your-name/sort.c` passes all checks
+5. Open a pull request
 
-## 项目结构
+## Project Structure
 
 ```
 sorting-arena/
 ├── include/
-│   └── arena.h                  # 公共头文件：计时、数据生成、验证
+│   └── arena.h                  # Public header: timing, data generation, validation
 ├── src/
-│   ├── benchmark.c              # 评测主程序
+│   ├── benchmark.c              # Benchmark driver
 │   └── baseline.c               # qsort baseline
 ├── submissions/
 │   └── example/
-│       └── sort.c               # 示例模板（从这里开始）
-├── Makefile                     # make run 一键评测
+│       └── sort.c               # Starter template (begin here)
+├── Makefile                     # One-command benchmarking via make run
 └── README.md
 ```
 
 ## FAQ
 
-**Q: 可以用 AI 吗？**
-A: 随便用。
+**Q: Can I use AI?**
+A: Absolutely. Go wild.
 
-**Q: 怎么算赢？**
-A: benchmark 说了算。
+**Q: How is the winner decided?**
+A: The benchmark has the final say.
 
 ---
 
-Vibe2Ship · AI 时代的产品实验室
+Vibe2Ship · Building in the age of AI
