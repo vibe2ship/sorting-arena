@@ -1,5 +1,5 @@
 CC      := gcc
-CFLAGS  := -O2 -std=c11 -Wall -Wextra -Iinclude -pthread
+CFLAGS  := -O2 -std=c11 -Wall -Wextra -Iinclude
 LDFLAGS := -pthread -lm
 
 # Default submission

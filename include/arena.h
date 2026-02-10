@@ -7,6 +7,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#ifdef __APPLE__
+#include <mach/mach_time.h>
+#endif
 
 /*============================================================
  *  Sorting Arena — Common Header
@@ -20,9 +23,15 @@ typedef void (*sort_fn)(int *arr, size_t n);
 
 /* ---- High-resolution timer ---- */
 static inline double time_ms(void) {
+#ifdef __APPLE__
+    static mach_timebase_info_data_t info = {0};
+    if (info.denom == 0) mach_timebase_info(&info);
+    return (double)mach_absolute_time() * info.numer / info.denom / 1e6;
+#else
     struct timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
     return ts.tv_sec * 1000.0 + ts.tv_nsec / 1e6;
+#endif
 }
 
 /* ---- Data generation ---- */
@@ -40,10 +49,6 @@ static inline int is_sorted(const int *arr, size_t n) {
 }
 
 /* ---- Benchmark sizes ---- */
-/*
- * Default sizes: 1K to 1M.
- * Compile with -DSIZE_10M to include 10M (slow for naive implementations).
- */
 static const size_t bench_sizes[] = { 1000, 10000 };
 static const char *size_labels[] __attribute__((unused)) = { "1K", "10K" };
 #define NUM_SIZES 2
